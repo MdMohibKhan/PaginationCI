@@ -13,8 +13,8 @@
         try{
             
 
-            $this->db->select('subCentreCode as cCode, subCentreName as cName');
-            $this->db->from('subTBcentres');
+            $this->db->select('centreCode as cCode, centreName as cName');
+            $this->db->from('centers');
             $this->db->where(array('isActive' => 1));
             $this->db->limit($limit,$offset);
             $query = $this->db->get();
