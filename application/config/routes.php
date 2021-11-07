@@ -7,6 +7,9 @@ $route['pagination']='PaginationTestingController/paginationCI';
 
 $route['BackendPaginationAjax']= 'BackendPaginationAjaxController'; // This URL For Backend Pagination Using Ajax.
 
+// URL for backend pagination and search ---->
+$route['BackendPaginationAndSearchAjax']= 'BackendPaginationAjaxController/backendPaginationAndSearchView';
+
 
 
 
