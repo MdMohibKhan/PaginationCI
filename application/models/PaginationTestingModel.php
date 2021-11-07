@@ -15,7 +15,6 @@
 
             $this->db->select('centreCode as cCode, centreName as cName');
             $this->db->from('centers');
-            $this->db->where(array('isActive' => 1));
             $this->db->limit($limit,$offset);
             $query = $this->db->get();
             if ($query->num_rows() > 0) {
@@ -40,8 +39,7 @@
                     
         
                     $this->db->select('count(*) as total_rows');
-                    $this->db->from('subTBcentres');
-                    $this->db->where(array('isActive' => 1));
+                    $this->db->from('centers');
                     $query = $this->db->get();
                     return $query->result_array()[0]['total_rows'];
                     
