@@ -16,7 +16,7 @@ class IndexController extends CI_Controller {
 		<br>
 		<p>&nbsp;&nbsp;>>&nbsp;&nbsp;
 			<a href='".base_url("pagination")."' class='btn btn-primary'>
-			Start Pagination&nbsp; >>&nbsp; </a> 
+			Frontend Pagination&nbsp; >>&nbsp; </a> 
 		</p>
 		<br>
 		<p>&nbsp;&nbsp;>>&nbsp;&nbsp;
