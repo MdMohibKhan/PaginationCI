@@ -8,6 +8,9 @@ class BackendPaginationAjaxController extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('PaginationTestingModel');
+		
+		// ********* Loading Model For Backend Pagination And Search ---------------->
+		$this->load->model('BackendPaginationAndSearchModel');
 
 	}
 
@@ -15,7 +18,43 @@ class BackendPaginationAjaxController extends CI_Controller {
 		$this->load->view('backendPaginationAjax');
 	}
 
-    public function backendPaginationAjax(){
+	
+	
+	// ********************* Backend Pagination And Search ------------------------>
+	public function backendPaginationAndSearchView(){
+		$this->load->view('backendPaginationAndSearchAjax');
+	}
+
+	public function backendPaginationAndSearchAjax(){
+
+		
+		$pageNumber = $this->input->post('pgNum');
+		$per_page = $this->input->post('perPg');
+		$searchText = $this->input->post('searchText');
+
+		//-----------Getting total Number of  Records From database------------------
+		
+		$total_rows = $this->BackendPaginationAndSearchModel->total_rows($searchText);
+		
+		
+
+		if($per_page==""){
+			$per_page=10;
+		}
+
+		$linkData=$this->createLink($pageNumber,$per_page,$total_rows);
+        
+															   // Limit, offset
+		$tableData=$this->BackendPaginationAndSearchModel->fetchCentres($per_page,$linkData['offset'],$searchText);
+			
+		echo json_encode(array('perPageOptions' => $linkData['perPageOptions'],'pageLink' => $linkData['pageLink'],'tableData' => $tableData));
+
+	}
+
+	// <--------------- End **********************************<<
+	
+	
+    	public function backendPaginationAjax(){
 
 		
 		$pageNumber = $this->input->post('pgNum');
