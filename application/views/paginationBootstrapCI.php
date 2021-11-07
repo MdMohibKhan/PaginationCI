@@ -14,9 +14,6 @@
     <body>
 
         <style>
-            .tb3, .tb3Th, .tb3Td {
-            border:1px solid black;
-            }
             
             .center {
             margin: auto;
@@ -29,59 +26,9 @@
             }
         </style>
 
+
+
 <!-- -------------------------First Method--------------------------------------- -->
-        <!-- 1st Way -->
-        <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Pagination Example-1(Backend)</h6>                       
-                        </div>
-                        <div class="card-body">
-
-                        <div class="table-responsive">
-
-
-                            <div style="width:60%; text-align:center;" class="center">
-
-                                <table style="width:100%" class="tb3">
-
-
-                                <tr>
-                                    <th class="tb3Th">Center Id</th>
-                                    <th class="tb3Th">Center Name</th>
-                                </tr>
-
-                                <?php if (is_array($data) || is_object($data)){ foreach ($data as $row){?>
-
-                                <tr>
-                                    <td class="tb3Td"><?php echo $row['cCode']; ?></td>
-                                    <td class="tb3Td"><?php echo $row['cName']; ?></td>
-                                </tr>
-
-                                <?php } } ?>
-
-                                </table>
-                            
-                                <div style="float: right; padding-top:10px;">
-                                    <?php echo($this->pagination->create_links()); ?>
-                                </div>
-                            </div>
-
-
-                                                
-                        </div>
-
-                </div>
-
-                </div>
-            </div>
-			
-
-
-    <br><br><br>
-
-
-
-<!-- -------------------------Second Method--------------------------------------- -->
 
     <?php 
 
@@ -127,10 +74,10 @@
     ?>
 
 
-<!-- 2st Way -->
+<!-- 1st Way -->
 <div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Pagination Example-2(Frontend)</h6>                       
+					<h6 class="m-0 font-weight-bold text-primary">Pagination Example-1(Frontend)</h6>                       
 				</div>
 				<div class="card-body">
 				<div class="table-responsive">
@@ -176,7 +123,8 @@
 
     
 
-<!-- -------------------------Third Method--------------------------------------- -->
+
+<!-- -------------------------Second Method--------------------------------------- -->
 
 <br><br><br>
 
@@ -203,10 +151,10 @@
 
 
 
-<!-- 3rd Way -->
+<!-- 2nd Way -->
 <div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Pagination Example-3(Frontend)</h6>                       
+					<h6 class="m-0 font-weight-bold text-primary">Pagination Example-2(Frontend)</h6>                       
 				</div>
 				<div class="card-body">
 				<div class="table-responsive">
@@ -232,7 +180,7 @@
 
 
             $.ajax({
-                url:"<?php echo base_url('PaginationTestingController/paginationBootstrap2');?>",
+                url:"<?php echo base_url('FrontendPaginationController/paginationBootstrap');?>",
                 type:"POST",
                 success:function(RespondedData) {  
                     

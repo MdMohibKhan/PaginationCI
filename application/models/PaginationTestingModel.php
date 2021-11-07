@@ -9,13 +9,12 @@
         }
 
 
-    public function fetchCentres($limit,$offset){
+    public function fetchCentres(){
         try{
             
 
             $this->db->select('centreCode as cCode, centreName as cName');
             $this->db->from('centers');
-            $this->db->limit($limit,$offset);
             $query = $this->db->get();
             if ($query->num_rows() > 0) {
                 
@@ -31,25 +30,5 @@
             }
 
     }
-
-
-
-            public function total_rows(){
-                try{
-                    
-        
-                    $this->db->select('count(*) as total_rows');
-                    $this->db->from('centers');
-                    $query = $this->db->get();
-                    return $query->result_array()[0]['total_rows'];
-                    
-            
-                    }
-                    catch(Exception $ee){
-                        return 0;
-                    }
-        
-            }        
-
 
 }

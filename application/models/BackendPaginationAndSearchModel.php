@@ -50,31 +50,31 @@
 
 
 
-            public function total_rows($searchText){
-                try{
-                    if($searchText!='' && $searchText!=null){
-                        $this->db->select('count(*) as total_rows');
-                        $this->db->from('centers');
-                        $this->db->like('centreCode',$searchText);
-                        $this->db->or_like('centreName',$searchText);
+    public function total_rows($searchText){
+        try{
+            if($searchText!='' && $searchText!=null){
+                $this->db->select('count(*) as total_rows');
+                $this->db->from('centers');
+                $this->db->like('centreCode',$searchText);
+                $this->db->or_like('centreName',$searchText);
 
-                        $query = $this->db->get();
-                        return $query->result_array()[0]['total_rows'];
-                    }
-                    else{
-        
-                        $this->db->select('count(*) as total_rows');
-                        $this->db->from('centers');
-                        $query = $this->db->get();
-                        return $query->result_array()[0]['total_rows'];
-                    
-                    }
-                }
-                catch(Exception $ee){
-                    return 0;
-                }
-        
-            }        
+                $query = $this->db->get();
+                return $query->result_array()[0]['total_rows'];
+            }
+            else{
+
+                $this->db->select('count(*) as total_rows');
+                $this->db->from('centers');
+                $query = $this->db->get();
+                return $query->result_array()[0]['total_rows'];
+            
+            }
+        }
+        catch(Exception $ee){
+            return 0;
+        }
+
+    }        
 
 
 }

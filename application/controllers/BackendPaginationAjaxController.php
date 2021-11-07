@@ -8,6 +8,9 @@ class BackendPaginationAjaxController extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('PaginationTestingModel');
+
+		$this->load->model('CIpaginationModel');
+
 		
 		// ********* Loading Model For Backend Pagination And Search ---------------->
 		$this->load->model('BackendPaginationAndSearchModel');
@@ -17,6 +20,56 @@ class BackendPaginationAjaxController extends CI_Controller {
 	public function index(){
 		$this->load->view('backendPaginationAjax');
 	}
+
+	// ########### CodeIgniter Pagination -------------------->
+
+	
+	public function CIpagination(){
+		
+		$this->load->library('pagination');
+
+		$config=[
+			"base_url" => base_url("BackendPaginationAjaxController/CIpagination"),
+			"per_page" => 2,
+			"total_rows" => $this->CIpaginationModel->total_rows(),
+
+			"full_tag_open" => "<ul class='pagination'>",
+			"full_tag_close" => "</ul>",
+
+			"first_tag_open" => "<li class='page-item'> ",
+			"first_tag_close" => "</li>",
+
+			"last_tag_open" => "<li class='page-item'> ",
+			"last_tag_close" => "</li>",
+
+			"next_tag_open" => "<li class='page-item'>",
+			"next_tag_close" => "</li>",
+
+			"prev_tag_open" => "<li class='page-item'>",
+			"prev_tag_close" => "</li>",
+
+			"num_tag_open" => "<li class='page-item'>",
+			"num_tag_close" => "<li>",
+
+			"cur_tag_open" => "<li class='page-item active'><a href='javascript:void(0)' class='page-link'>",
+			"cur_tag_close" => "</a></li>",
+
+			"data_page_attr"=> "class='page-link'",
+		];
+
+		$this->pagination->initialize($config);
+
+		$data['data']=$this->CIpaginationModel->fetchCentres($config['per_page'],$this->uri->segment(3));
+
+		// $this->load->view('paginationTesting',$data);
+
+		$this->load->view('backendCIpagination',$data);
+
+		
+	}
+
+
+	// <--------------- End ###################################<<
 
 	
 	
@@ -61,7 +114,7 @@ class BackendPaginationAjaxController extends CI_Controller {
 		$per_page = $this->input->post('perPg');
 
 		//-----------Getting total Number of  Records From database--------------------------------------
-		$total_rows = $this->PaginationTestingModel->total_rows();
+		$total_rows = $this->CIpaginationModel->total_rows();
 
 		if($per_page==""){
 			$per_page=10;
@@ -70,7 +123,7 @@ class BackendPaginationAjaxController extends CI_Controller {
 		$linkData=$this->createLink($pageNumber,$per_page,$total_rows);
         
 															   // Limit, offset
-		$tableData=$this->PaginationTestingModel->fetchCentres($per_page,$linkData['offset']);
+		$tableData=$this->CIpaginationModel->fetchCentres($per_page,$linkData['offset']);
 			
 		echo json_encode(array('perPageOptions' => $linkData['perPageOptions'],'pageLink' => $linkData['pageLink'],'tableData' => $tableData));
 

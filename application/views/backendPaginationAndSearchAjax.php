@@ -29,7 +29,7 @@
             </div>
             <div class="card-body">
                 <div style="text-align: center">
-                    <input type="button" value="Backend Pagination And Search By Ajax" onclick="backendPaginationAndSearchAjax(1,'');"/>
+                    <input type="button" value="Backend Pagination And Search By Ajax" onclick="backendPaginationAjax(1,'');"/>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
 		</div>
 
     <script>
-        function backendPaginationAndSearchAjax(pgNum,searchText){
+        function backendPaginationAjax(pgNum,searchText){
 
             setCookie("selectedPage", pgNum, 1);
 
@@ -91,7 +91,7 @@
                     $(document).ready(function() {
                             $('#perPage').on('change', function(){
                                 let selectedPage=getCookie("selectedPage");
-                                backendPaginationAndSearchAjax(selectedPage,searchText);
+                                backendPaginationAjax(selectedPage,searchText);
                         });   
                     });
                     
@@ -162,7 +162,7 @@
 
                 $('#searchBoxId').keyup(function(){
                     var searchText=$(this).val();
-                    backendPaginationAndSearchAjax(1,searchText.trim(' ')); 
+                    backendPaginationAjax(1,searchText.trim(' ')); 
                 })
                 
         </script>
